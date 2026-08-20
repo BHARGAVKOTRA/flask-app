@@ -1,15 +1,13 @@
 from flask import Flask
-from prometheus_flask_exporter import PrometheusMetrics
 
 app = Flask(__name__)
-metrics = PrometheusMetrics(app)
 
 @app.route('/')
 def home():
     return '''
     <html>
     <head>
-        <title>Bhargav's Platform</title>
+        <title>Bhargav Flask App</title>
         <style>
             body {
                 font-family: sans-serif;
@@ -32,7 +30,7 @@ def home():
             p { color: #94a3b8; font-size: 1.1rem; }
             .badge {
                 display: inline-block;
-                background: #0ea5e9;
+                background: #22c55e;
                 color: white;
                 padding: 6px 16px;
                 border-radius: 999px;
@@ -43,10 +41,10 @@ def home():
     </head>
     <body>
         <div class="card">
-            <h1>Hello from Kubernetes!</h1>
+            <h1>Hello from EC2!</h1>
             <p>Deployed by Bhargav Kotra</p>
-            <p>Flask + Docker + Prometheus + Grafana</p>
-            <span class="badge">v3.0 — With Monitoring</span>
+            <p>Flask + Docker + GitHub Actions + SSM</p>
+            <span class="badge">v2.0 — Auto deployed via CI/CD ✅</span>
         </div>
     </body>
     </html>
@@ -54,7 +52,7 @@ def home():
 
 @app.route('/health')
 def health():
-    return {'status': 'ok', 'version': '3.0'}
+    return {'status': 'ok', 'version': '2.0'}
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=80)
